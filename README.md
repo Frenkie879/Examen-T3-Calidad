@@ -118,3 +118,31 @@ sonar-scanner              # usa sonar-project.properties
 - `tests/unit/` pruebas de base de datos y servicios; `tests/k6/` prueba de carga con k6
 - `reports/` resultados reales: selenium, carga, sonar, gráficas
 - `docs/` informe técnico y su generador
+
+1. Prompts de Especificación y Desarrollo (T3)
+A continuación se documentan los prompts completos utilizados como guía de ingeniería para el desarrollo integral del caso T3:
+
+1. Prompt Principal: Desarrollo del caso T3
+"Actúa como ingeniero de aseguramiento de calidad de software. Adjunto dos documentos del curso Calidad y Pruebas de Software: el enunciado del caso T3 y las historias de usuario (HU-01 a HU-05) del Sistema de Gestión de Laboratorios “LabTrack”. Necesito desarrollar el caso completo cumpliendo cada instrucción del enunciado y cada criterio de la rúbrica de evaluación.
+El trabajo comprende la implementación funcional del sistema, el diseño de una matriz de casos de prueba trazada a los criterios de aceptación, la automatización de los flujos críticos (Login y Reservas) con Selenium WebDriver, una prueba de carga sobre el catálogo con Apache JMeter y un análisis estático del código con las reglas de SonarQube, comparando una versión inicial con defectos y una versión refactorizada.
+Como entregables espero el código fuente con sus pruebas, un informe técnico con portada, índice, matriz de casos, evidencias de automatización, resultados de carga tabulados y graficados, análisis de SonarQube antes y después y backlog de refactorización, y una presentación ejecutiva de cinco láminas que certifique el pase a producción. Todas las cifras deben provenir de ejecuciones reales y ser verificables."
+
+2. Generación de casos de prueba con IA (sección 2.1 del informe)
+"Actúa como analista QA senior. A partir de las historias de usuario y criterios de aceptación de LabTrack que comparto a continuación, propone casos de prueba adicionales a los escenarios positivos evidentes. Prioriza casos negativos, valores límite, condiciones de concurrencia y riesgos de seguridad alineados con OWASP Top 10, como inyección SQL, control de acceso y manejo de sesiones.
+Para cada caso indica la historia de usuario relacionada, el escenario, la precondición, los datos de prueba y el resultado esperado. Señala también cuando un caso se apoye en una regla de negocio que no esté explícita en las historias, para que el equipo pueda validarla antes de automatizarlo."
+
+3. Automatización con Selenium
+"Diseña una suite de pruebas automatizadas end-to-end con Selenium WebDriver y Mocha para los flujos críticos de LabTrack: autenticación con bloqueo tras tres intentos fallidos (HU-01) y reserva de equipos con validación de cruce de horarios y límite de una reserva simultánea (HU-03). Extiende la cobertura al catálogo, al panel del encargado y a la devolución con penalización.
+La suite debe usar esperas explícitas en lugar de pausas fijas, reiniciar los datos antes de cada caso para garantizar resultados reproducibles, tomar capturas de pantalla como evidencia y generar reportes en formato JUnit XML, importables en Testomat.io o TestLink, y en HTML."
+
+4. Prueba de carga con JMeter
+"Elabora un plan de pruebas de carga en Apache JMeter que valide la nota técnica de HU-02: la vista de catálogo debe soportar múltiples usuarios concurrentes. El escenario debe ser realista: cada usuario virtual inicia sesión una sola vez extrayendo el token CSRF, mantiene su sesión con un gestor de cookies y navega el catálogo aplicando filtros aleatorios con tiempos de lectura entre 0,5 y 1,5 segundos.
+Define como acuerdo de nivel de servicio un tiempo de respuesta menor a 1000 ms y 0 % de errores. Ejecuta escenarios de 50, 100, 200 y 400 usuarios, y presenta los resultados tabulados (promedio, percentiles 90, 95 y 99, throughput y tasa de error) junto con un análisis de la estabilidad y del punto de saturación."
+
+5. Análisis estático y backlog de refactorización
+"Realiza un análisis estático del código de LabTrack con las reglas de SonarQube para JavaScript, complementado con una revisión manual de seguridad. Clasifica cada hallazgo según la taxonomía de SonarQube (vulnerabilidad, bug, security hotspot o code smell), con su severidad y el identificador de la regla.
+A partir de los hallazgos, construye un backlog de refactorización priorizado por riesgo, que indique para cada ítem el defecto, la solución aplicada, el esfuerzo estimado y la evidencia de cierre. Finalmente, compara las métricas antes y después: incidencias por tipo, complejidad cognitiva, duplicación, cobertura y calificaciones de seguridad, fiabilidad y mantenibilidad."
+
+6. Presentación ejecutiva
+"Elabora una presentación de máximo cinco diapositivas (portada y cuatro láminas de contenido) para sustentar en cinco minutos ante el Directorio que LabTrack está listo para producción. La primera lámina debe declarar el veredicto de calidad en una frase contundente, y las tres siguientes deben resumir, con gráficas y métricas clave, la automatización con Selenium, el rendimiento con JMeter y la salud del código con SonarQube.
+Prioriza la evidencia visual sobre el texto e incluye notas del orador que sirvan de guion para la defensa oral."
