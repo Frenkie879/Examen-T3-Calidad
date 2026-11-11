@@ -1,0 +1,24 @@
+<%- include('partials/header', { titulo: 'Catálogo' }) %>
+<h1>Catálogo de equipos</h1>
+<p class="page-description">Encuentra los recursos para tu práctica.</p>
+<form method="get" action="/catalogo" class="filtros" id="form-filtro">
+  <label for="filtro-categoria">Categoría</label>
+  <select id="filtro-categoria" name="categoria">
+    <option value="">Todas</option>
+    <% categorias.forEach(c => { %><option value="<%= c %>" <%= c === categoria ? 'selected' : '' %>><%= c %></option><% }) %>
+  </select>
+  <button id="btn-filtrar" type="submit" class="secondary"><%- include('partials/icon', { name: 'filter' }) %>Filtrar</button>
+</form>
+<% if (mensaje) { %><div class="alert info" id="mensaje-vacio"><%= mensaje %></div><% } %>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Catálogo de equipos"><table id="tabla-catalogo">
+  <thead><tr><th>Nombre</th><th>Código inventario</th><th>Categoría</th><th>Estado</th><th></th></tr></thead>
+  <tbody>
+  <% equipos.forEach(e => { %>
+    <tr><td class="nombre"><%= e.nombre %></td><td class="codigo"><%= e.codigo_inventario %></td>
+      <td class="categoria"><%= e.categoria %></td><td><span class="estado <%= e.estado %>"><%= e.estado %></span></td>
+      <td><% if (e.estado === 'Disponible') { %><a href="/reservas/nueva?equipo=<%= e.id %>">Reservar</a><% } %></td></tr>
+  <% }) %>
+  </tbody>
+</table>
+</div>
+<%- include('partials/footer') %>

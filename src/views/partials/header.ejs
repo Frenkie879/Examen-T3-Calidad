@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= typeof titulo !== 'undefined' ? titulo + ' · ' : '' %>LabTrack</title>
+  <link rel="icon" type="image/png" href="/static/images/favicon.png">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="<%= usuario ? 'authenticated' : 'guest' %>">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<header class="top">
+  <a class="brand" href="/" aria-label="LabTrack, inicio"><img src="/static/images/upn-logo.png" alt="UPN"><span>LabTrack</span></a>
+  <% if (usuario) { %>
+  <div class="header-user"><span class="header-user-name" id="usuario-actual"><%= usuario.nombre %></span><span class="header-user-role"><%= usuario.rol === 'estudiante' ? 'Estudiante' : 'Encargado de laboratorio' %></span></div>
+  <% } else { %><span class="header-role">Plataforma de laboratorio</span><% } %>
+</header>
+<div class="app-shell">
+  <% if (usuario) { %>
+  <nav class="sidebar" aria-label="Navegación principal">
+    <div class="nav-label">Navegación</div>
+    <% if (usuario.rol === 'estudiante') { %>
+      <a href="/panel" id="nav-panel" <%- titulo === 'Mi panel' ? 'aria-current="page"' : '' %>><%- include('icon', { name: 'home' }) %>Mi panel</a>
+      <a href="/catalogo" id="nav-catalogo" <%- titulo === 'Catálogo' ? 'aria-current="page"' : '' %>><%- include('icon', { name: 'grid' }) %>Catálogo de equipos</a>
+      <a href="/reservas/nueva" id="nav-reservar" <%- titulo === 'Nueva reserva' ? 'aria-current="page"' : '' %>><%- include('icon', { name: 'calendar' }) %>Solicitar reserva</a>
+    <% } else { %>
+      <a href="/admin/solicitudes" id="nav-solicitudes" <%- titulo === 'Solicitudes' ? 'aria-current="page"' : '' %>><%- include('icon', { name: 'list' }) %>Solicitudes</a>
+      <a href="/admin/devoluciones" id="nav-devoluciones" <%- titulo === 'Devoluciones' ? 'aria-current="page"' : '' %>><%- include('icon', { name: 'return' }) %>Devoluciones</a>
+    <% } %>
+    <div class="nav-account">
+      <form method="post" action="/logout" class="inline"><input type="hidden" name="_csrf" value="<%= csrf %>"><button id="btn-logout" class="link"><%- include('icon', { name: 'logout' }) %>Cerrar sesión</button></form>
+    </div>
+  </nav>
+  <% } %>
+  <main id="contenido" tabindex="-1">
+  <% if (flash) { %><div class="alert <%= flash.tipo %>" id="flash" role="status"><%= flash.texto %></div><% } %>

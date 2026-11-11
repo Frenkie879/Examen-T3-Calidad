@@ -1,0 +1,35 @@
+<%- include('partials/header', { titulo: 'Iniciar sesión' }) %>
+<div class="login-layout"><section class="login-intro"><div class="intro-mark"></div><h2>Tu práctica comienza aquí.</h2><p>Consulta los equipos y gestiona tus reservas de laboratorio en un solo lugar.</p></section>
+<section class="login-form">
+  <h1>Iniciar sesión</h1>
+  <p class="muted">Ingresa con tu código institucional y tu contraseña.</p>
+  <% if (error) { %>
+    <div class="alert error<%= bloqueado ? ' security' : '' %>" id="<%= bloqueado ? 'alerta-seguridad' : 'error-login' %>" role="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/login" id="form-login">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <div class="field">
+      <label for="codigo">Código <span class="req" aria-hidden="true">*</span></label>
+      <div class="input-wrap">
+        <span class="input-icon" aria-hidden="true"><%- include('partials/icon', { name: 'id' }) %></span>
+        <input id="codigo" name="codigo" value="<%= codigo %>" autocomplete="username" placeholder="Ej.: N00471826" required aria-describedby="codigo-ayuda">
+      </div>
+      <p class="field-hint" id="codigo-ayuda"><%- include('partials/icon', { name: 'info' }) %>Estudiantes: N00 + 6 dígitos. Encargados: ADM00 + 6 dígitos.</p>
+    </div>
+    <div class="field">
+      <label for="password">Contraseña <span class="req" aria-hidden="true">*</span></label>
+      <div class="input-wrap has-action">
+        <span class="input-icon" aria-hidden="true"><%- include('partials/icon', { name: 'lock' }) %></span>
+        <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Tu contraseña" required aria-describedby="password-ayuda">
+        <button type="button" class="input-action" id="ver-password" aria-label="Mostrar contraseña" aria-pressed="false" aria-controls="password">
+          <span data-icon="eye"><%- include('partials/icon', { name: 'eye' }) %></span>
+          <span data-icon="eye-off" hidden><%- include('partials/icon', { name: 'eye-off' }) %></span>
+        </button>
+      </div>
+      <p class="field-hint" id="password-ayuda"><%- include('partials/icon', { name: 'info' }) %>Distingue mayúsculas, minúsculas y símbolos.</p>
+    </div>
+    <button id="btn-login" type="submit"><%- include('partials/icon', { name: 'login' }) %>Ingresar</button>
+  </form>
+</section></div>
+<script src="/static/login.js" defer></script>
+<%- include('partials/footer') %>

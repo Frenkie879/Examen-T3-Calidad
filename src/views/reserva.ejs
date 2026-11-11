@@ -1,0 +1,23 @@
+<%- include('partials/header', { titulo: 'Nueva reserva' }) %>
+<section class="reservation">
+  <h1>Solicitar reserva</h1>
+  <p class="page-description">Indica el equipo, la fecha y el horario exacto de tu práctica.</p>
+  <% if (error) { %><div class="alert error" id="error-reserva" role="alert"><%= error %></div><% } %>
+  <div class="reservation-layout"><form method="post" action="/reservas" id="form-reserva" class="card">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <label for="equipo_id">Equipo</label>
+    <select id="equipo_id" name="equipo_id" required>
+      <option value="">— Seleccione —</option>
+      <% equipos.forEach(e => { %><option value="<%= e.id %>" <%= e.id === seleccionado ? 'selected' : '' %>><%= e.nombre %> (<%= e.codigo_inventario %>) — <%= e.estado %></option><% }) %>
+    </select>
+    <label for="fecha">Fecha</label>
+    <input id="fecha" name="fecha" type="date" value="<%= datos.fecha || '' %>" required>
+    <div class="row">
+      <div><label for="hora_inicio">Hora de inicio</label><input id="hora_inicio" name="hora_inicio" type="time" value="<%= datos.horaInicio || '' %>" required></div>
+      <div><label for="hora_fin">Hora de fin</label><input id="hora_fin" name="hora_fin" type="time" value="<%= datos.horaFin || '' %>" required></div>
+    </div>
+    <button id="btn-reservar" type="submit"><%- include('partials/icon', { name: 'calendar' }) %>Solicitar reserva</button>
+  </form>
+  <aside class="card reservation-help"><h2>Antes de solicitar</h2><p>La disponibilidad se confirma al procesar la solicitud. No se admiten cruces con reservas aprobadas ni más de un equipo simultáneo por estudiante.</p></aside></div>
+</section>
+<%- include('partials/footer') %>

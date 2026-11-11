@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="LabTrack Selenium" time="70.756" tests="25" failures="0">
+  <testsuite name="Root Suite" timestamp="2026-11-11T12:21:59" tests="0" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="HU-01 Autenticación segura (Login)" timestamp="2026-11-11T12:21:59" tests="8" file="D:\8vo ciclo\CALIDAD Y PRUEBAS DE SOFTWARE (Presencial)\Semana 13\CalidadPruebas-T3-main\tests\selenium\01_login.test.js" time="19.368" failures="0">
+    <testcase name="HU-01 Autenticación segura (Login) CP-01 Login exitoso con código y contraseña válidos muestra el panel personal" time="0.682" classname="CP-01 Login exitoso con código y contraseña válidos muestra el panel personal">
+    </testcase>
+    <testcase name="HU-01 Autenticación segura (Login) CP-02 Contraseña incorrecta muestra &quot;Credenciales inválidas&quot;" time="0.580" classname="CP-02 Contraseña incorrecta muestra &quot;Credenciales inválidas&quot;">
+    </testcase>
+    <testcase name="HU-01 Autenticación segura (Login) CP-03 Código de estudiante inexistente muestra &quot;Credenciales inválidas&quot;" time="0.376" classname="CP-03 Código de estudiante inexistente muestra &quot;Credenciales inválidas&quot;">
+    </testcase>
+    <testcase name="HU-01 Autenticación segura (Login) CP-04 Tres intentos fallidos consecutivos bloquean la cuenta y muestran alerta de seguridad" time="1.752" classname="CP-04 Tres intentos fallidos consecutivos bloquean la cuenta y muestran alerta de seguridad">
+    </testcase>
+    <testcase name="HU-01 Autenticación segura (Login) CP-05 [IA] Intento de inyección SQL en el login es rechazado" time="0.320" classname="CP-05 [IA] Intento de inyección SQL en el login es rechazado">
+    </testcase>
+    <testcase name="HU-01 Autenticación segura (Login) CP-06 [IA] Un login exitoso reinicia el contador de intentos fallidos" time="1.918" classname="CP-06 [IA] Un login exitoso reinicia el contador de intentos fallidos">
+    </testcase>
+    <testcase name="HU-01 Autenticación segura (Login) CP-07 [IA] Acceder al panel sin sesión redirige al login" time="0.054" classname="CP-07 [IA] Acceder al panel sin sesión redirige al login">
+    </testcase>
+    <testcase name="HU-01 Autenticación segura (Login) CP-08 Login del encargado redirige al panel de administrador" time="0.658" classname="CP-08 Login del encargado redirige al panel de administrador">
+    </testcase>
+  </testsuite>
+  <testsuite name="HU-02 Catálogo y filtrado de equipos" timestamp="2026-11-11T12:22:19" tests="5" file="D:\8vo ciclo\CALIDAD Y PRUEBAS DE SOFTWARE (Presencial)\Semana 13\CalidadPruebas-T3-main\tests\selenium\02_catalogo.test.js" time="4.654" failures="0">
+    <testcase name="HU-02 Catálogo y filtrado de equipos CP-09 El catálogo muestra nombre, código de inventario, categoría y estado" time="0.247" classname="CP-09 El catálogo muestra nombre, código de inventario, categoría y estado">
+    </testcase>
+    <testcase name="HU-02 Catálogo y filtrado de equipos CP-10 El filtro &quot;Electrónica&quot; muestra solo equipos de esa categoría" time="0.214" classname="CP-10 El filtro &quot;Electrónica&quot; muestra solo equipos de esa categoría">
+    </testcase>
+    <testcase name="HU-02 Catálogo y filtrado de equipos CP-11 Filtro sin equipos disponibles muestra el mensaje requerido" time="0.457" classname="CP-11 Filtro sin equipos disponibles muestra el mensaje requerido">
+    </testcase>
+    <testcase name="HU-02 Catálogo y filtrado de equipos CP-24 El filtro Cómputo muestra exclusivamente equipos de esa categoría" time="0.422" classname="CP-24 El filtro Cómputo muestra exclusivamente equipos de esa categoría">
+    </testcase>
+    <testcase name="HU-02 Catálogo y filtrado de equipos CP-25 El filtro Redes muestra exclusivamente equipos de esa categoría" time="0.359" classname="CP-25 El filtro Redes muestra exclusivamente equipos de esa categoría">
+    </testcase>
+  </testsuite>
+  <testsuite name="HU-03 Reserva de equipos (flujo crítico)" timestamp="2026-11-11T12:22:23" tests="6" file="D:\8vo ciclo\CALIDAD Y PRUEBAS DE SOFTWARE (Presencial)\Semana 13\CalidadPruebas-T3-main\tests\selenium\03_reservas.test.js" time="20.342" failures="0">
+    <testcase name="HU-03 Reserva de equipos (flujo crítico) CP-12 Reserva válida de un equipo Disponible queda en estado Pendiente" time="1.038" classname="CP-12 Reserva válida de un equipo Disponible queda en estado Pendiente">
+    </testcase>
+    <testcase name="HU-03 Reserva de equipos (flujo crítico) CP-13 Se bloquea la reserva que se cruza con una reserva aprobada del mismo equipo" time="2.932" classname="CP-13 Se bloquea la reserva que se cruza con una reserva aprobada del mismo equipo">
+    </testcase>
+    <testcase name="HU-03 Reserva de equipos (flujo crítico) CP-14 Un estudiante no puede tener más de un equipo reservado simultáneamente" time="1.125" classname="CP-14 Un estudiante no puede tener más de un equipo reservado simultáneamente">
+    </testcase>
+    <testcase name="HU-03 Reserva de equipos (flujo crítico) CP-15 [IA] Hora de fin anterior o igual a la de inicio es rechazada" time="0.673" classname="CP-15 [IA] Hora de fin anterior o igual a la de inicio es rechazada">
+    </testcase>
+    <testcase name="HU-03 Reserva de equipos (flujo crítico) CP-16 [IA] Reserva en fecha pasada es rechazada" time="0.870" classname="CP-16 [IA] Reserva en fecha pasada es rechazada">
+    </testcase>
+    <testcase name="HU-03 Reserva de equipos (flujo crítico) CP-17 [IA] Un estudiante Penalizado no puede reservar" time="3.874" classname="CP-17 [IA] Un estudiante Penalizado no puede reservar">
+    </testcase>
+  </testsuite>
+  <testsuite name="HU-04 / HU-05 Panel del encargado" timestamp="2026-11-11T12:22:44" tests="6" file="D:\8vo ciclo\CALIDAD Y PRUEBAS DE SOFTWARE (Presencial)\Semana 13\CalidadPruebas-T3-main\tests\selenium\04_admin.test.js" time="26.390" failures="0">
+    <testcase name="HU-04 / HU-05 Panel del encargado CP-18 El panel muestra estudiante, equipo, fecha/hora y botones Aprobar/Rechazar" time="1.703" classname="CP-18 El panel muestra estudiante, equipo, fecha/hora y botones Aprobar/Rechazar">
+    </testcase>
+    <testcase name="HU-04 / HU-05 Panel del encargado CP-19 Aprobar una reserva futura mantiene el equipo disponible fuera del horario" time="2.349" classname="CP-19 Aprobar una reserva futura mantiene el equipo disponible fuera del horario">
+    </testcase>
+    <testcase name="HU-04 / HU-05 Panel del encargado CP-20 Rechazar sin motivo es bloqueado; con motivo cambia a Rechazada" time="2.687" classname="CP-20 Rechazar sin motivo es bloqueado; con motivo cambia a Rechazada">
+    </testcase>
+    <testcase name="HU-04 / HU-05 Panel del encargado CP-21 [IA] No se aprueba una segunda solicitud que se cruza con otra ya aprobada" time="2.896" classname="CP-21 [IA] No se aprueba una segunda solicitud que se cruza con otra ya aprobada">
+    </testcase>
+    <testcase name="HU-04 / HU-05 Panel del encargado CP-22 Devolución dentro del plazo: equipo Disponible y estudiante Activo" time="4.078" classname="CP-22 Devolución dentro del plazo: equipo Disponible y estudiante Activo">
+    </testcase>
+    <testcase name="HU-04 / HU-05 Panel del encargado CP-23 Devolución fuera de plazo penaliza automáticamente al estudiante" time="2.666" classname="CP-23 Devolución fuera de plazo penaliza automáticamente al estudiante">
+    </testcase>
+  </testsuite>
+</testsuites>

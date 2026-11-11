@@ -1,0 +1,19 @@
+<%- include('partials/header', { titulo: 'Mi panel' }) %>
+<h1>Mi panel de préstamos</h1>
+<p class="page-description">Consulta tus solicitudes y el estado de tu cuenta.</p>
+<p>Estado de la cuenta: <strong id="estado-cuenta" class="estado <%= estado %>"><%= estado %></strong></p>
+<p><a class="btn" href="/reservas/nueva" id="btn-nueva-reserva"><%- include('partials/icon', { name: 'plus' }) %>Nueva reserva</a></p>
+<h2>Mis reservas</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Mis reservas">
+<table id="tabla-mis-reservas">
+  <thead><tr><th>Equipo</th><th>Fecha</th><th>Horario</th><th>Estado</th><th>Observación</th></tr></thead>
+  <tbody>
+  <% if (misReservas.length === 0) { %><tr><td colspan="5" class="muted">Aún no tienes reservas.</td></tr><% } %>
+  <% misReservas.forEach(r => { %>
+    <tr data-reserva="<%= r.id %>"><td><%= r.equipo %></td><td><%= r.fecha %></td><td><%= r.hora_inicio %> – <%= r.hora_fin %></td>
+      <td class="estado-reserva"><span class="estado <%= r.estado %>"><%= r.estado %></span></td><td><%= r.motivo_rechazo || '' %></td></tr>
+  <% }) %>
+  </tbody>
+</table>
+</div>
+<%- include('partials/footer') %>

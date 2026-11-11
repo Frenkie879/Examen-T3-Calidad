@@ -1,0 +1,22 @@
+<%- include('partials/header', { titulo: 'Devoluciones' }) %>
+<h1>Registrar devolución</h1>
+<p class="page-description">Busca la reserva activa y confirma la devolución física.</p>
+<form method="get" action="/admin/devoluciones" class="filtros">
+  <label for="buscar">Buscar reserva activa</label>
+  <input id="buscar" name="q" value="<%= q %>" placeholder="Estudiante, código o equipo">
+  <button id="btn-buscar"><%- include('partials/icon', { name: 'search' }) %>Buscar</button>
+</form>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Reservas activas"><table id="tabla-activas">
+  <thead><tr><th>Estudiante</th><th>Equipo</th><th>Fecha</th><th>Fin acordado</th><th></th></tr></thead>
+  <tbody>
+  <% if (activas.length === 0) { %><tr><td colspan="5" class="muted">No hay reservas activas.</td></tr><% } %>
+  <% activas.forEach(r => { %>
+    <tr data-reserva="<%= r.id %>"><td><%= r.estudiante %> (<%= r.codigo_estudiante %>)</td><td><%= r.equipo %></td><td><%= r.fecha %></td><td><%= r.hora_fin %></td>
+      <td><form method="post" action="/admin/devoluciones/<%= r.id %>" class="inline">
+        <input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn-devolucion"><%- include('partials/icon', { name: 'return' }) %>Marcar Devolución</button></form></td></tr>
+  <% }) %>
+  </tbody>
+</table>
+</div>
+<aside class="card reservation-help"><h2>Devolución fuera de horario</h2><p>Al registrar la devolución después de la hora acordada, el sistema aplicará la penalización automáticamente.</p></aside>
+<%- include('partials/footer') %>

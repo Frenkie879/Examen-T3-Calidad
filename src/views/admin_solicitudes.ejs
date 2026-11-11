@@ -1,0 +1,23 @@
+<%- include('partials/header', { titulo: 'Solicitudes' }) %>
+<h1>Reservas pendientes</h1>
+<p class="page-description">Revisa cada solicitud y registra una decisión.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Reservas pendientes"><table id="tabla-solicitudes">
+  <thead><tr><th>Estudiante</th><th>Equipo</th><th>Fecha/Hora solicitada</th><th>Acciones</th></tr></thead>
+  <tbody>
+  <% if (pendientes.length === 0) { %><tr><td colspan="4" class="muted" id="sin-pendientes">No hay solicitudes pendientes.</td></tr><% } %>
+  <% pendientes.forEach(r => { %>
+    <tr data-reserva="<%= r.id %>">
+      <td><%= r.estudiante %></td><td><%= r.equipo %></td><td><%= r.fecha %> <%= r.hora_inicio %>–<%= r.hora_fin %></td>
+      <td class="acciones">
+        <form method="post" action="/admin/solicitudes/<%= r.id %>/aprobar" class="inline">
+          <input type="hidden" name="_csrf" value="<%= csrf %>"><button class="ok btn-aprobar"><%- include('partials/icon', { name: 'check' }) %>Aprobar</button></form>
+        <form method="post" action="/admin/solicitudes/<%= r.id %>/rechazar" class="inline">
+          <input type="hidden" name="_csrf" value="<%= csrf %>">
+          <input name="motivo" class="motivo" aria-label="Motivo del rechazo" placeholder="Motivo del rechazo" maxlength="200">
+          <button class="danger btn-rechazar"><%- include('partials/icon', { name: 'close' }) %>Rechazar</button></form>
+      </td></tr>
+  <% }) %>
+  </tbody>
+</table>
+</div>
+<%- include('partials/footer') %>

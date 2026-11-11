@@ -1,0 +1,5 @@
+{
+  "reporterEnabled": "spec, mocha-junit-reporter, mochawesome",
+  "mochaJunitReporterReporterOptions": { "mochaFile": "reports/selenium/junit-selenium.xml", "testsuitesTitle": "LabTrack Selenium" },
+  "mochawesomeReporterOptions": { "reportDir": "reports/selenium/html", "reportFilename": "reporte-selenium", "reportTitle": "LabTrack – Pruebas Selenium", "charts": true, "inline": true }
+}
